@@ -1,3 +1,4 @@
+import bst.BinarySearchTree;
 import linkedlist.LinkedListDz;
 
 /**
@@ -9,15 +10,20 @@ public class Main {
 
         LinkedListDz list = new LinkedListDz();
 
-        list.add(3);
-        list.add(5);
-        list.add(7);
-        list.add(3);
-        list.add(5);
-        list.add(7);
-        list.add(3);
-        list.add(5);
-        list.add(7);
+        BinarySearchTree tree = new BinarySearchTree();
+
+        BinarySearchTree.Node root = new BinarySearchTree.Node(5);
+
+        tree.insert(root, 3);
+        tree.insert(root, 2);
+        tree.insert(root, 1);
+        tree.insert(root, 7);
+        tree.insert(root, 9);
+        tree.insert(root, 0);
+        tree.insert(root, 4);
+
+        tree.inOrderTraversal(root);
+
 
     }
 

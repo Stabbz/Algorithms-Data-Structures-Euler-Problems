@@ -5,23 +5,19 @@ package bst;
  */
 public class BinarySearchTree {
 
-    Node root;
+    public static class Node {
+        public Node left;
+        public Node right;
+        public int value;
 
-    static class Node {
-        Node left;
-        Node right;
-        int value;
-
-        Node(int val) {
+        public Node(int val) {
             this.value = val;
         }
     }
 
     public void insert(Node node, int val) {
 
-        if (root == null) {
-            root = new Node(val);
-        } else if (node.value < val) {
+        if (node.value < val) {
             if (node.right != null) {
                 insert(node.right, val);
             } else {
@@ -36,5 +32,18 @@ public class BinarySearchTree {
                 System.out.println("Inserted value: " + val + " to the left of: " + node.value);
             }
         }
+    }
+
+    public void inOrderTraversal(Node node) {
+
+        if (node.left != null) {
+            inOrderTraversal(node.left);
+        }
+        System.out.println("Visiting node with value: " + node.value);
+
+        if (node.right != null) {
+            inOrderTraversal(node.right);
+        }
+
     }
 }
