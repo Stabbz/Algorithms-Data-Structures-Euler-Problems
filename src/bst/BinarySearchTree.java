@@ -5,6 +5,13 @@ package bst;
  */
 public class BinarySearchTree {
 
+    public Node root;
+    // used when inserting recursively
+    Node current;
+
+    /**
+     * Tree Node model.
+     */
     public static class Node {
         public Node left;
         public Node right;
@@ -15,35 +22,53 @@ public class BinarySearchTree {
         }
     }
 
-    public void insert(Node node, int val) {
 
-        if (node.value < val) {
-            if (node.right != null) {
-                insert(node.right, val);
+    /**
+     * Insert value into the tree.
+     */
+    public void insert(int val) {
+
+        if (root == null) {
+            root = new Node(val);
+            current = root;
+        } else if (current.value < val) {
+            if (current.right != null) {
+                current = current.right;
+                insert(val);
             } else {
-                node.right = new Node(val);
-                System.out.println("Inserted value: " + val + " to the right of: " + node.value);
+                current.right = new Node(val);
+                System.out.println("Inserted value: " + val + " to the right of: " + current.value);
+                current = root;
             }
-        } else if (node.value > val) {
-            if (node.left != null) {
-                insert(node.left, val);
+        } else if (current.value > val) {
+            if (current.left != null) {
+                current = current.left;
+                insert(val);
             } else {
-                node.left = new Node(val);
-                System.out.println("Inserted value: " + val + " to the left of: " + node.value);
+                current.left = new Node(val);
+                System.out.println("Inserted value: " + val + " to the left of: " + current.value);
+                current = root;
             }
         }
     }
 
-    public void inOrderTraversal(Node node) {
+    /**
+     * Print the elements in the tree inorder.
+     */
+    public void printInorder(){
+        printInOrderRec(root);
+        System.out.println("");
+    }
 
-        if (node.left != null) {
-            inOrderTraversal(node.left);
+    /**
+     * Helper function for printInOrder()
+     */
+    private void printInOrderRec(Node currentNode){
+        if ( currentNode == null ){
+            return;
         }
-        System.out.println("Visiting node with value: " + node.value);
-
-        if (node.right != null) {
-            inOrderTraversal(node.right);
-        }
-
+        printInOrderRec(currentNode.left);
+        System.out.print(currentNode.value+", ");
+        printInOrderRec(currentNode.right);
     }
 }

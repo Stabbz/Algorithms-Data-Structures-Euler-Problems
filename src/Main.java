@@ -1,6 +1,8 @@
 import bst.BinarySearchTree;
 import linkedlist.LinkedListDz;
 
+import java.util.TreeMap;
+
 /**
  * Created by Damyan Damyanov <damyan.damyanov@scalefocus.com> on 11/11/15.
  */
@@ -12,19 +14,17 @@ public class Main {
 
         BinarySearchTree tree = new BinarySearchTree();
 
-        BinarySearchTree.Node root = new BinarySearchTree.Node(5);
+        tree.insert(5);
+        tree.insert(3);
+        tree.insert(2);
+        tree.insert(1);
+        tree.insert(7);
+        tree.insert(9);
+        tree.insert(0);
+        tree.insert(4);
 
-        tree.insert(root, 3);
-        tree.insert(root, 2);
-        tree.insert(root, 1);
-        tree.insert(root, 7);
-        tree.insert(root, 9);
-        tree.insert(root, 0);
-        tree.insert(root, 4);
-
-        tree.inOrderTraversal(root);
-
-
+        tree.printInorder();
     }
 
 }
+
