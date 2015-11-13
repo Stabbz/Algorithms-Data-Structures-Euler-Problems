@@ -61,7 +61,7 @@ public class BinarySearchTree {
     }
 
     /**
-     * Helper function for printInOrder()
+     * Helper function for printInOrder().
      */
     private void printInOrderRec(Node currentNode){
         if ( currentNode == null ){
@@ -70,5 +70,41 @@ public class BinarySearchTree {
         printInOrderRec(currentNode.left);
         System.out.print(currentNode.value+", ");
         printInOrderRec(currentNode.right);
+    }
+
+    /**
+     * Get the minimum value in the tree.
+     */
+    public int getMin(){
+        if(root == null) {
+            System.out.println("Tree is empty!");
+            return -1;
+        }
+        current = root;
+        while(true) {
+            if (current.left == null) {
+                return current.value;
+            } else {
+                current = current.left;
+            }
+        }
+    }
+
+    /**
+     * Get the maximum value in the tree.
+     */
+    public int getMax(){
+        if(root == null) {
+            System.out.println("Tree is empty!");
+            return -1;
+        }
+        current = root;
+        while(true) {
+            if (current.right == null) {
+                return current.value;
+            } else {
+                current = current.right;
+            }
+        }
     }
 }
