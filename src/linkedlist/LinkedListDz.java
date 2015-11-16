@@ -42,12 +42,10 @@ public class LinkedListDz {
         }
 
         Node currentNode = head.next;
-        Node prevNode = head;
 
         while (true) {
             if (currentNode.next != null) {
                 currentNode = currentNode.next;
-                prevNode = prevNode.next;
             } else {
                 break;
             }
@@ -55,7 +53,7 @@ public class LinkedListDz {
 
         currentNode.next = new Node(val);
         size += 1;
-        currentNode.next.prev = prevNode;
+        currentNode.next.prev = currentNode;
         System.out.println("Added to tail: " + val);
     }
 
@@ -124,6 +122,7 @@ public class LinkedListDz {
 
     /**
      * Insert element at the middle of the list.
+     * (Only traversing the list once)
      */
     public void insertAtMiddle(int val) {
         if (head == null) {
@@ -149,28 +148,58 @@ public class LinkedListDz {
             return;
         }
 
+        Node middleElement = getMiddleElement();
+
+        // inserting node after the found middle element
+        System.out.println("We are at node: " + middleElement.value);
+        Node newNode = new Node(val);
+        size += 1;
+        newNode.prev = middleElement;
+        newNode.next = middleElement.next;
+        middleElement.next.prev = newNode;
+        middleElement.next = newNode;
+        System.out.println("Added element: " + val + " at middle of list.");
+    }
+
+    /**
+     * Delete the element that's in the middle of the list.
+     * (Only traversing the list once)
+     */
+    public void deleteMiddleElement(){
+        // delete nothing(exit the method) if list has 2 or less elements.
+        if(size <= 2){
+            System.out.println("List has only 2 elements or less! Nothing was deleted!");
+            return;
+        }
+        Node middleElement;
+        if(size % 2 == 0) {
+            middleElement = getMiddleElement().next;
+        } else {
+            middleElement = getMiddleElement();
+        }
+        middleElement.prev.next = middleElement.next;
+        middleElement.next.prev = middleElement.prev;
+        size -= 1;
+        System.out.println(middleElement.value + " was deleted!");
+    }
+
+    /**
+     * Get the element that is in the middle of the list.
+     * (Only traversing the list once)
+     */
+    public Node getMiddleElement(){
         Node singleJumpNode = head;
         Node doubleJumpNode = head;
 
         // traversing the list to get to the middle element.
         while (true) {
-            System.out.println("Single: " + singleJumpNode.value + ", Double: " + doubleJumpNode.value);
             singleJumpNode = singleJumpNode.next;
             doubleJumpNode = doubleJumpNode.next.next;
             if (doubleJumpNode.next == null || doubleJumpNode.next.next == null) {
                 break;
             }
         }
-
-        // inserting node after the found middle element
-        System.out.println("We are at node: " + singleJumpNode.value);
-        Node newNode = new Node(val);
-        size += 1;
-        newNode.prev = singleJumpNode;
-        newNode.next = singleJumpNode.next;
-        singleJumpNode.next.prev = newNode;
-        singleJumpNode.next = newNode;
-        System.out.println("Added element: " + val + " at middle of list.");
+        return singleJumpNode;
     }
 
 }
