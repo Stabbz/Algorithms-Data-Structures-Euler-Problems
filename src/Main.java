@@ -1,4 +1,3 @@
-import bst.BinarySearchTree;
 import linkedlist.LinkedListDz;
 
 /**
@@ -6,11 +5,9 @@ import linkedlist.LinkedListDz;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[]args) {
 
         LinkedListDz list = new LinkedListDz();
-
-        BinarySearchTree tree = new BinarySearchTree();
 
     }
 

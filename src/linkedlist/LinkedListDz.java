@@ -58,9 +58,38 @@ public class LinkedListDz {
     }
 
     /**
+     * Delete element from the end of the list.
+     */
+    public void pop(){
+
+        if (size < 2) {
+            head = null;
+            size = 0;
+        } else {
+
+            Node currentNode = head;
+
+            while (true) {
+                if (currentNode.next != null) {
+                    currentNode = currentNode.next;
+                } else {
+                    break;
+                }
+            }
+
+            currentNode.prev.next = null;
+            currentNode.prev = null;
+            size = size - 1;
+        }
+    }
+
+    /**
      * Print out the elements of the list in order of their insertion (fifo).
      */
     public void printList() {
+        if(head == null){
+            System.out.println("List is empty!");
+        }
         Node temp = head;
         while (temp != null) {
             System.out.print(temp.value);
@@ -201,5 +230,6 @@ public class LinkedListDz {
         }
         return singleJumpNode;
     }
+
 
 }
